@@ -23,6 +23,7 @@
         cidr: "{{PubSub1Cidr}}"
         region: "{{region}}"
         az: "{{zone1}}"
+        map_public: yes
         tags:
           Name: pubsub1
       register: pubsub1_out
