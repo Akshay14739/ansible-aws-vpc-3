@@ -15,3 +15,6 @@
         dns_support: yes
         state: "{{state}}"
       register: vpc_out
+
+    - debug:
+        var: vpc_out
