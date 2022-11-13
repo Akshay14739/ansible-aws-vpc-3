@@ -13,7 +13,7 @@
       register: key_out
     - name: Storing provate key locally
       copy:
-        content: key_out.key.private_key
+        content: "{{key_out.key.private_key}}"
         dest: ./vprofile-privkey.pem
         mode: 600
       when: key_out.changed == True
