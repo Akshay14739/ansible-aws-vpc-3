@@ -25,5 +25,65 @@
         az: "{{zone1}}"
         map_public: yes
         tags:
-          Name: pubsub1
+          Name: vprofile_pubsub1
       register: pubsub1_out
+
+    - name: Creating 2nd public subnet
+      ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{vpc_out.vpc.id}}"
+        cidr: "{{PubSub2Cidr}}"
+        region: "{{region}}"
+        az: "{{zone2}}"
+        map_public: yes
+        tags:
+          Name: vprofile_pubsub2
+      register: pubsub2_out
+
+    - name: Creating 3rd public subnet
+      ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{vpc_out.vpc.id}}"
+        cidr: "{{PubSub3Cidr}}"
+        region: "{{region}}"
+        az: "{{zone3}}"
+        map_public: yes
+        tags:
+          Name: vprofile_pubsub3
+      register: pubsub3_out
+
+    - name: Creating 1st Private subnet
+      ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{vpc_out.vpc.id}}"
+        cidr: "{{PrivSub1Cidr}}"
+        region: "{{region}}"
+        az: "{{zone1}}"
+        map_public: yes
+        tags:
+          Name: vprofile_privsub1
+      register: privsub1_out
+
+    - name: Creating 2nd Private subnet
+      ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{vpc_out.vpc.id}}"
+        cidr: "{{PrivSub2Cidr}}"
+        region: "{{region}}"
+        az: "{{zone2}}"
+        map_public: yes
+        tags:
+          Name: vprofile_privsub2
+      register: privsub2_out
+
+    - name: Creating 3rd Private subnet
+      ec2_vpc_subnet:
+        state: present
+        vpc_id: "{{vpc_out.vpc.id}}"
+        cidr: "{{PrivSub3Cidr}}"
+        region: "{{region}}"
+        az: "{{zone3}}"
+        map_public: yes
+        tags:
+          Name: vprofile_privsub3
+      register: privsub3_out
