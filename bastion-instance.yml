@@ -5,6 +5,8 @@
   tasks:
     - name: Including variables for BAstion host
       include_vars: vars/vpc_vars
+    - name: Including variables for BAstion host
+      include_vars: vars/output_vars
 
     - name: Creating Key pair
       ec2_key:
