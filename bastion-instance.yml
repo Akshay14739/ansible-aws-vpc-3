@@ -6,4 +6,14 @@
     - name: Including variables for BAstion host
       include_vars: vars/vpc_vars
 
-    - name: 
+    - name: Creating Key pair
+      ec2_key:
+        name: vprofile-key
+        region: "{{region}}"
+      register: key_out
+    - name: Storing provate key locally
+      copy:
+        content: key_out.key.private_key
+        dest: ./vprofile-privkey.pem
+        mode: 600
+      when: key_out.changed == True
