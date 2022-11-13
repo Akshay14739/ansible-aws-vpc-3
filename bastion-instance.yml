@@ -31,4 +31,23 @@
             from_port: 80
             to_port: 80
             cidr_ip: 0.0.0.0/0
+      register: bastionSG_out
+
+    - name: Creating Bastion host instance
+      ec2:
+          key_name: vprofile-key
+          region: "{{region}}"
+          image: "{{bastion_ami}}"
+          instance_type: t2.micro
+          wait: yes
+          wait_timeout: 300
+          exact_count: 1
+          group: "Vprofile-SG"
+          vpc_subnet_id: "{{pubsub1id}}"
+          instance_tags:
+            Name: Bastion host
+            Project: Vprofile
+          count_tag:
+            Name: Bastion host
+            Project: Vprofile
       register: bastion_out
