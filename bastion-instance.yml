@@ -17,3 +17,15 @@
         dest: ./vprofile-privkey.pem
         mode: 600
       when: key_out.changed == True
+
+    - name: Creating SG 
+      ec2_group:
+        name: "Vprofile-SG"
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+      register: bastion_out
