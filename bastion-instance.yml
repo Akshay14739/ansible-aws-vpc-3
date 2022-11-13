@@ -1,0 +1,9 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+    - name: Including variables for BAstion host
+      include_vars: vars/vpc_vars
+
+    - name: 

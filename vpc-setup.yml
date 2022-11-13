@@ -154,15 +154,15 @@
 
     - name: Storing variables into a file
       copy:
-        content: "vpcid: {{vpc_out}}\n
-                  pubsub1id: {{pubsub1_out}}\n
-                  pubsub2id: {{pubsub2_out}}\n
-                  pubsub3id: {{pubsub3_out}}\n
-                  privsub1id: {{privsub1_out}}\n
-                  privsub2id: {{privsub2_out}}\n
-                  privsub3id: {{privsub3_out}}\n
-                  igwid: {{vprofile_igw}}\n
-                  publicRTid: {{publicRT_out}}\n
-                  NATGWid: {{NATGW_out}}\n
-                  privateRTid: {{privateRT_out}}\n"
+        content: "vpcid: {{vpc_out.vpc.id}}\n
+                  pubsub1id: {{pubsub1_out.subnet.id}}\n
+                  pubsub2id: {{pubsub2_out.subnet.id}}\n
+                  pubsub3id: {{pubsub3_out.subnet.id}}\n
+                  privsub1id: {{privsub1_out.subnet.id}}\n
+                  privsub2id: {{privsub2_out.subnet.id}}\n
+                  privsub3id: {{privsub3_out.subnet.id}}\n
+                  igwid: {{vprofile_igw.gateway_id}}\n
+                  publicRTid: {{publicRT_out.route_table.id}}\n
+                  NATGWid: {{NATGW_out.nat_gateway_id}}\n
+                  privateRTid: {{privateRT_out.route_table.id}}\n"
         dest: vars/output_vars
