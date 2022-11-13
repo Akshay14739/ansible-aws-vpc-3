@@ -155,5 +155,14 @@
     - name: Storing variables into a file
       copy:
         content: "vpcid: {{vpc_out}}\n
-                  pubsub1id: {{pubsub1_out}}\n"
+                  pubsub1id: {{pubsub1_out}}\n
+                  pubsub2id: {{pubsub2_out}}\n
+                  pubsub3id: {{pubsub3_out}}\n
+                  privsub1id: {{privsub1_out}}\n
+                  privsub2id: {{privsub2_out}}\n
+                  privsub3id: {{privsub3_out}}\n
+                  igwid: {{vprofile_igw}}\n
+                  publicRTid: {{publicRT_out}}\n
+                  NATGWid: {{NATGW_out}}\n
+                  privateRTid: {{privateRT_out}}\n"
         dest: vars/output_vars
