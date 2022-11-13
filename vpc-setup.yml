@@ -151,3 +151,9 @@
         - publicRT_out
         - NATGW_out
         - privateRT_out
+
+    - name: Storing variables into a file
+      copy:
+        content: "vpcid: {{vpc_out}}\n
+                  pubsub1id: {{pubsub1_out}}\n"
+        dest: vars/output_vars
