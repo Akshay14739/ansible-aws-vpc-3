@@ -48,7 +48,7 @@
           wait: yes
           wait_timeout: 300
           exact_count: 1
-          group: "Vprofile-SG"
+          group: "BastionHost-SG"
           vpc_subnet_id: "{{pubsub1id}}"
           instance_tags:
             Name: Bastion host
