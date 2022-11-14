@@ -19,7 +19,7 @@
       register: vprostackkey_out
     - name: Storing the provate key 
       copy: 
-        content: "{{vprostack-key_out.key.private_key}}"
+        content: "{{vprostackkey_out.key.private_key}}"
         dest: ./vprostackkey_prv.pem
         mode: 777
       when: vprostackkey_out.changed == True
