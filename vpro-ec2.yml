@@ -16,12 +16,12 @@
       ec2_key:
         name: vprostack-key
         region: "{{region}}"
-      register: vprostack-key_out
+      register: vprostackkey_out
     - name: Storing the provate key 
       copy: 
         content: "{{vprostack-key_out.key.private_key}}"
-        dest: ./vprostack-key_prv.pem
+        dest: ./vprostackkey_prv.pem
         mode: 777
-      when: vprostack-key_out.changed == True
+      when: vprostackkey_out.changed == True
 
     
