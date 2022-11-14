@@ -24,4 +24,34 @@
         mode: 777
       when: vprostackkey_out.changed == True
 
-    
+    - name: Security Group for Load Balancer
+      ec2_group:
+        name: "vproELB_SG"
+        description: HTTP port 80 
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        purge_rules: no
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+      register: vproELB_SG_out
+
+    - name: Security Group for EC2 instances 
+      ec2_group:
+        name: "vproEC2_SG"
+        description: HTTP port 80 
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        purge_rules: no
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{vproELB_SG_out.group_id}}"
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            group_id: "{{bastion_sg}}"
+      register: vproEC2_SG_out

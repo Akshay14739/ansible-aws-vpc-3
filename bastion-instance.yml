@@ -22,7 +22,7 @@
 
     - name: Creating SG 
       ec2_group:
-        name: "Vprofile-SG"
+        name: "BastionHost-SG"
         vpc_id: "{{vpcid}}"
         region: "{{region}}"
         description: Creating SG for Bastion host & App stack
@@ -32,6 +32,12 @@
             to_port: 80
             cidr_ip: 0.0.0.0/0
       register: bastionSG_out
+
+    - name: Storing the BastionHost-SG ID in vprofilestacksetup variable file
+      blockinfile:
+        path: vars/output_vars
+        block: |
+          bastion_sg: {{bastionSG_out.group_id}}
 
     - name: Creating Bastion host instance
       ec2:
