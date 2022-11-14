@@ -39,7 +39,7 @@
 
     - name: Security Group for EC2 instances 
       ec2_group:
-        name: "vproEC2_SG"
+        name: vproEC2_SG
         description: HTTP port 80 
         vpc_id: "{{vpcid}}"
         region: "{{region}}"
@@ -54,4 +54,3 @@
             to_port: 22
             group_id: "{{bastion_sg}}"
       register: vproEC2_SG_out
-      
