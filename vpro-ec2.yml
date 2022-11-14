@@ -61,7 +61,15 @@
         description: HTTP port 80 
         vpc_id: "{{vpcid}}"
         region: "{{region}}"
-        purge_rules: no
+        #purge_rules: no
         rules:
           - proto: tcp
+            group_id: "{{bastion_sg}}"
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{vproELB_SG_out.group_id}}"
+          - proto: tcp
+            from_port: 22
+            to_port: 22
             group_id: "{{bastion_sg}}"
