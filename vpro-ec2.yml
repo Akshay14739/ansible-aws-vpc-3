@@ -54,3 +54,14 @@
             to_port: 22
             group_id: "{{bastion_sg}}"
       register: vproEC2_SG_out
+
+    - name: Updating vproEC2_SG with all its traffic
+      ec2_group:
+        name: vproEC2_SG
+        description: HTTP port 80 
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        purge_rules: no
+        rules:
+          - proto: tcp
+            group_id: "{{bastion_sg}}"
