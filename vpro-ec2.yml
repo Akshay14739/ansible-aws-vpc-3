@@ -1,0 +1,27 @@
+---
+
+- name: Setup Vprofile stack
+  hosts: localhost
+  connection: local 
+  gather_facts: False
+
+  tasks:
+    - name: Importing VPC variables
+      include_vars: vars/output_vars
+
+    - name: Importing Vprofile stack variavles
+      include_vars: vars/vprostacksetup
+
+    - name: Creating new key pair for vprofile stack
+      ec2_key:
+        name: vprostack-key
+        region: "{{region}}"
+      register: vprostack-key_out
+    - name: Storing the provate key 
+      copy: 
+        content: "{{vprostack-key_out.key.private_key}}"
+        dest: ./vprostack-key_prv.pem
+        mode: 777
+      when: vprostack-key_out.changed == True
+
+    

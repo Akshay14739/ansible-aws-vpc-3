@@ -1,0 +1,4 @@
+ec2_ami: ami-097a2df4ac947655f
+
+# Region Name
+region: "us-east-2"
